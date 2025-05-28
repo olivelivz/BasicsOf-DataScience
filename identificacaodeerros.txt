@@ -1,0 +1,134 @@
+Aprenda a identificar e corrigir os erros mais comuns e torne seu código mais eficiente e confiável.
+01
+Esquecer de verificar valores nulos antes de operações.
+Descrição: Iniciantes frequentemente esquecem de verificar e tratar valores nulos antes de realizar operações, o que pode levar a erros ou resultados inesperados.
+
+Tipo de Erro: Erro de tempo de execução.
+
+Exemplo:
+import pandas as pd
+
+df = pd.DataFrame({'A': [1, 2, None, 4]})
+df['B'] = df['A'] * 2  # Pode causar erro se houver valores nulos
+    
+Correção:
+import pandas as pd
+
+df = pd.DataFrame({'A': [1, 2, None, 4]})
+df['A'] = df['A'].fillna(0)  # Tratar valores nulos
+df['B'] = df['A'] * 2
+    
+Passo 1: Identifique colunas com valores nulos usando `df.isna().sum()`.
+
+Passo 2: Trate os valores nulos com `fillna` ou `dropna`.
+
+Passo 3: Realize as operações desejadas após tratar os valores nulos.
+
+02
+Não converter tipos de dados corretamente.
+Descrição: Iniciantes podem esquecer de converter tipos de dados, como strings para datas ou números, o que pode causar erros em operações subsequentes.
+
+Tipo de Erro: Erro de tempo de execução.
+
+Exemplo:
+import pandas as pd
+
+df = pd.DataFrame({'date': ['2021-01-01', '2021-02-01', '2021-03-01']})
+df['date'] = df['date'] + pd.Timedelta(days=1)  # Erro ao somar timedelta a string
+    
+Correção:
+import pandas as pd
+
+df = pd.DataFrame({'date': ['2021-01-01', '2021-02-01', '2021-03-01']})
+df['date'] = pd.to_datetime(df['date'])  # Converter string para datetime
+df['date'] = df['date'] + pd.Timedelta(days=1)
+    
+Passo 1: Identifique colunas que precisam de conversão de tipo.
+
+Passo 2: Use métodos como `pd.to_datetime` ou `astype` para converter os tipos de dados.
+
+Passo 3: Realize operações após a conversão correta dos tipos de dados.
+
+03
+Não remover duplicatas no dataset.
+Descrição: Iniciantes podem esquecer de remover duplicatas, o que pode distorcer análises e resultados.
+
+Tipo de Erro: Erro lógico.
+
+Exemplo:
+import pandas as pd
+
+df = pd.DataFrame({'A': [1, 2, 2, 4]})
+# Esquecendo de remover duplicatas
+df_sum = df['A'].sum()  # Resultado incorreto devido a duplicatas
+    
+Correção:
+import pandas as pd
+
+df = pd.DataFrame({'A': [1, 2, 2, 4]})
+df = df.drop_duplicates()  # Remover duplicatas
+df_sum = df['A'].sum()
+    
+Passo 1: Verifique a presença de duplicatas usando `df.duplicated().sum()`.
+
+Passo 2: Remova duplicatas com `drop_duplicates`.
+
+Passo 3: Realize operações após garantir que não há duplicatas.
+
+04
+Não padronizar campos de texto.
+Descrição: Iniciantes podem esquecer de padronizar campos de texto, resultando em inconsistências que afetam a análise.
+
+Tipo de Erro: Erro lógico.
+
+Exemplo:
+import pandas as pd
+
+df = pd.DataFrame({'name': ['Alice', 'bob', 'CHARLIE']})
+# Esquecendo de padronizar campos de texto
+unique_names = df['name'].unique()  # Resultados inconsistentes
+    
+Correção:
+import pandas as pd
+
+df = pd.DataFrame({'name': ['Alice', 'bob', 'CHARLIE']})
+df['name'] = df['name'].str.title()  # Padronizar campos de texto
+unique_names = df['name'].unique()
+    
+Passo 1: Identifique colunas de texto que precisam de padronização.
+
+Passo 2: Use métodos como `str.lower`, `str.upper` ou `str.title` para padronizar.
+
+Passo 3: Realize operações após garantir a padronização dos campos de texto.
+
+05
+Não identificar e tratar outliers.
+Descrição: Iniciantes podem não identificar e tratar outliers, o que pode distorcer análises estatísticas e modelos preditivos.
+
+Tipo de Erro: Erro lógico.
+
+Exemplo:
+import pandas as pd
+
+df = pd.DataFrame({'A': [1, 2, 3, 1000]})
+# Esquecendo de tratar outliers
+mean_value = df['A'].mean()  # Média distorcida devido ao outlier
+    
+Correção:
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({'A': [1, 2, 3, 1000]})
+q1 = df['A'].quantile(0.25)
+q3 = df['A'].quantile(0.75)
+iqr = q3 - q1
+lower_bound = q1 - 1.5 * iqr
+upper_bound = q3 + 1.5 * iqr
+df = df[(df['A'] >= lower_bound) & (df['A'] <= upper_bound)]  # Remover outliers
+mean_value = df['A'].mean()
+    
+Passo 1: Identifique outliers usando métodos como Z-score ou IQR.
+
+Passo 2: Defina limites para identificar outliers.
+
+Passo 3: Remova ou trate os outliers antes de realizar análises.

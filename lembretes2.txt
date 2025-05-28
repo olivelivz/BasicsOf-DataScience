@@ -1,0 +1,33 @@
+import pandas as pd
+
+df = pd.read_csv('/data/ecommerce.csv')
+
+# Verifique a quantidade de linhas e colunas
+print(df.shape)
+
+linhas_colunas = df.shape
+print('Verificar a qtd de Linhas e colunas: ', linhas_colunas)
+
+# Verifique os tipos de dados
+tipos = df.dtypes
+print('Verificar Tipagem:\n', tipos)
+
+# Verifique a quantidade de valores nulos
+nulos = df.isnull().sum()
+print('Verificar valores nulos:\n', nulos)
+
+#  Substitua os valores nulos das colunas ‘Temporada’ e ‘Marca’ por ‘Não Definido’
+df['Temporada'] = df['Temporada'].fillna('Não Definido')
+df['Marca'] = df['Marca'].fillna('Não Definido')
+
+# Calcular o intervalo interquartil (IQR)
+q1 = df['N_Avaliacoes'].quantile(0.25)
+q3 = df['N_Avaliacoes'].quantile(0.75)
+iqr = q3 - q1
+
+# Definir o limite superior para identificar outliers
+limite_alto = q3 + 1.5 * iqr
+
+# Filtrar os produtos que possuem um número de avaliações maior que o limite superior
+df_avaliados = df[(df['N_Avaliacoes'] > limite_alto)]
+

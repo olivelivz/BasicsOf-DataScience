@@ -1,0 +1,29 @@
+O que é tratamento de dados e por que é importante?
+O tratamento de dados envolve a limpeza, correção e padronização dos dados para remover erros e inconsistências. É uma etapa essencial para garantir a qualidade e a precisão das análises e modelos preditivos, permitindo que as conclusões derivadas sejam confiáveis.
+
+Quais são as principais ferramentas e bibliotecas usadas no tratamento de dados em Python?
+A principal biblioteca usada para manipulação de dados em Python é o Pandas. Além disso, outras bibliotecas como NumPy e SciPy também são frequentemente utilizadas para tarefas específicas de tratamento de dados.
+
+Como posso identificar e tratar valores nulos em um DataFrame do Pandas?
+Para identificar valores nulos, você pode usar a função `df.isna()`. Para tratar esses valores, você pode substituí-los usando `fillna` ou removê-los com `dropna`. A função `dropna(thresh=n)` permite definir um limite mínimo de valores não nulos para manter uma linha ou coluna.
+
+O que são outliers e como posso identificá-los?
+Outliers são valores que se desviam significativamente dos outros dados em um conjunto. Eles podem ser identificados usando filtros básicos, Z-score ou IQR (Interquartile Range). Essas técnicas ajudam a detectar valores que estão fora do intervalo esperado.
+
+Como posso tratar campos de texto em um DataFrame?
+Campos de texto podem ser padronizados usando operações como `str.title`, `str.lower` e `str.upper`. Além disso, é possível validar e corrigir campos de texto, como endereços e nomes, para garantir a consistência dos dados.
+
+Qual é a importância da padronização de formatos e categorias nos dados?
+A padronização de formatos e categorias é crucial para garantir que os dados sejam consistentes e comparáveis. Isso inclui mascaramento de dados pessoais, correção de formatos de data e validação de categorias, o que facilita a análise e a interpretação dos dados.
+
+Como posso remover duplicatas de um DataFrame?
+Para remover duplicatas de um DataFrame, você pode usar a função `drop_duplicates`. Essa função elimina registros duplicados, mantendo apenas a primeira ocorrência de cada registro.
+
+Como posso salvar um DataFrame tratado em um novo arquivo?
+Após tratar os dados, você pode salvar o DataFrame em um novo arquivo CSV usando a função `to_csv`. Isso garante que as alterações feitas durante o tratamento de dados sejam preservadas e possam ser reutilizadas posteriormente.
+
+O que são expressões lambda e como elas são usadas no tratamento de dados?
+Expressões lambda são funções anônimas em Python que podem ser usadas para simplificar operações simples. No tratamento de dados, elas são úteis para aplicar funções rápidas e customizadas a colunas de um DataFrame.
+
+Quais são as estratégias comuns para tratar dados inconsistentes?
+Estratégias comuns para tratar dados inconsistentes incluem a padronização de formatos, validação e correção de campos, ajuste de idade com base na data de nascimento, separação de endereços e verificação de CPFs e siglas de estados. Essas técnicas ajudam a garantir que os dados sejam precisos e utilizáveis.
