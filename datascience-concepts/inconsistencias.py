@@ -1,4 +1,8 @@
- # mascarar dados pessoais
+import pandas as pd 
+
+df = pd.read_csv('L:/Lívia Oliveira/Programas/vivaldi/clientes.csv')
+
+# mascarar dados pessoais
 df['cpf_mascara'] = df['cpf'].apply(lambda cpf: f'{cpf[:3]}, ***.***-{cpf[2:]}')
 #output : 624.***.***-29
 
